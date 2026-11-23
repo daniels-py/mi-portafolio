@@ -8,7 +8,7 @@ import { featuredProject } from '../data/projects';
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Daniel | Desarrollador de Software</title>
@@ -41,10 +41,11 @@ import { featuredProject } from '../data/projects';
 			<ProjectShowcase {...featuredProject} />
 		</section>
 
-		<!-- Stack técnico / Habilidades -->
+		<!-- Stack técnico / Habilidades (mosaico solo íconos unificado) -->
 		<SkillsSection
-			size="sm"
-			title="Habilidades y tecnologías"
+			variant="icons"
+			grouped={false}
+			title="Tecnologías que uso"
 			subtitle="Lenguajes, frameworks y herramientas con los que construyo mis proyectos."
 		/>
 	</main>

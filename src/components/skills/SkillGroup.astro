@@ -13,18 +13,19 @@ interface Props {
   skills?: Skill[];
   count?: number;
   size?: 'md' | 'sm';
+  variant?: 'cards' | 'icons';
 }
 
-const { title, skills = [], count = skills.length, size = 'md' } = Astro.props;
+const { title, skills = [], count = skills.length, size = 'md', variant = 'cards' } = Astro.props;
 ---
 
-<section class:list={['skill-group', `skill-group--${size}`]}>
+<section class:list={['skill-group', `skill-group--${size}`, variant === 'icons' && 'skill-group--icons']}>
   <div class="head">
     <h3>{title}</h3>
     {count > 0 && <span class="count">{count}</span>}
   </div>
   <div class="grid">
-    {skills.map((skill) => <SkillCard {...skill} size={size} />)}
+    {skills.map((skill) => <SkillCard {...skill} size={size} variant={variant} />)}
     <slot />
   </div>
 </section>
@@ -77,6 +78,19 @@ const { title, skills = [], count = skills.length, size = 'md' } = Astro.props;
   /* Grid para tamaño compacto: columnas más estrechas y más densas */
   .skill-group--sm .grid {
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 12px;
+  }
+
+  /* Mosaico solo íconos */
+  .skill-group--icons + .skill-group--icons {
+    margin-top: 24px;
+  }
+  .skill-group--icons .head {
+    margin-bottom: 12px;
+  }
+  .skill-group--icons .grid {
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
   }
 </style>

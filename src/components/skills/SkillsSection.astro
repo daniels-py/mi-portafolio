@@ -8,6 +8,7 @@
  * <SkillsSection only={['Bases de datos']} /> -> solo algunas categorías
  */
 import SkillGroup from './SkillGroup.astro';
+import SkillCard from './SkillCard.astro';
 import { skillCategories } from '../../data/skills';
 
 interface Props {
@@ -18,6 +19,10 @@ interface Props {
   only?: string[];
   /** Tamaño de tarjetas: "md" (normal, 104px) o "sm" (compacto, 76px) */
   size?: 'md' | 'sm';
+  /** Variante visual: "cards" (tarjetas completas) o "icons" (mosaico solo íconos) */
+  variant?: 'cards' | 'icons';
+  /** Si es false, muestra todos los elementos juntos sin dividir por categorías */
+  grouped?: boolean;
 }
 
 const {
@@ -26,20 +31,30 @@ const {
   subtitle = 'Lenguajes, herramientas y cursos con los que construyo mis proyectos.',
   only,
   size = 'md',
+  variant = 'cards',
+  grouped = true,
 } = Astro.props;
 
 const categories = only
   ? skillCategories.filter((c) => only.includes(c.title))
   : skillCategories;
+
+const allSkills = categories.flatMap((c) => c.skills);
 ---
 
-<section id={id} class:list={['mx-auto w-full max-w-5xl scroll-mt-20 px-5', size === 'sm' ? 'py-16' : 'py-24']}>
-  <header class="mb-10 text-center" data-reveal>
+<section id={id} class:list={['mx-auto w-full max-w-5xl scroll-mt-20 px-5', size === 'sm' || variant === 'icons' ? 'py-16' : 'py-24']}>
+  <header class="mb-12 text-center" data-reveal>
     <h2 class="text-4xl font-bold tracking-tight">{title}</h2>
     {subtitle && <p class="mx-auto mt-3 max-w-xl text-gray-300">{subtitle}</p>}
   </header>
 
-  {categories.map((c) => <SkillGroup title={c.title} skills={c.skills} size={size} />)}
+  {grouped ? (
+    categories.map((c) => <SkillGroup title={c.title} skills={c.skills} size={size} variant={variant} />)
+  ) : (
+    <div class="mx-auto grid max-w-4xl grid-cols-[repeat(auto-fill,minmax(84px,1fr))] justify-items-center gap-4 sm:gap-5">
+      {allSkills.map((skill) => <SkillCard {...skill} size={size} variant={variant} />)}
+    </div>
+  )}
 </section>
 
 <style is:global>
