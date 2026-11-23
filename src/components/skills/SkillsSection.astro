@@ -1,0 +1,81 @@
+---
+/**
+ * Sección completa "Habilidades" lista para colocar en cualquier página.
+ * Soporta prop `size` ("md" | "sm") para mostrar una versión más compacta y densa.
+ *
+ * <SkillsSection size="sm" />               -> versión compacta (más tarjetas en menos espacio)
+ * <SkillsSection />                         -> versión normal
+ * <SkillsSection only={['Bases de datos']} /> -> solo algunas categorías
+ */
+import SkillGroup from './SkillGroup.astro';
+import { skillCategories } from '../../data/skills';
+
+interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  /** Filtra por título de categoría */
+  only?: string[];
+  /** Tamaño de tarjetas: "md" (normal, 104px) o "sm" (compacto, 76px) */
+  size?: 'md' | 'sm';
+}
+
+const {
+  id = 'habilidades',
+  title = 'Habilidades y tecnologías',
+  subtitle = 'Lenguajes, herramientas y cursos con los que construyo mis proyectos.',
+  only,
+  size = 'md',
+} = Astro.props;
+
+const categories = only
+  ? skillCategories.filter((c) => only.includes(c.title))
+  : skillCategories;
+---
+
+<section id={id} class:list={['mx-auto w-full max-w-5xl scroll-mt-20 px-5', size === 'sm' ? 'py-16' : 'py-24']}>
+  <header class="mb-10 text-center" data-reveal>
+    <h2 class="text-4xl font-bold tracking-tight">{title}</h2>
+    {subtitle && <p class="mx-auto mt-3 max-w-xl text-gray-300">{subtitle}</p>}
+  </header>
+
+  {categories.map((c) => <SkillGroup title={c.title} skills={c.skills} size={size} />)}
+</section>
+
+<style is:global>
+  /* Se usa animation (no transition) para no pisar los efectos hover de cada tarjeta */
+  @media (prefers-reduced-motion: no-preference) {
+    .js-reveal [data-reveal]:not(.is-visible) {
+      opacity: 0;
+    }
+    [data-reveal].is-visible {
+      animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) backwards;
+    }
+  }
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+</style>
+
+<script>
+  // Solo se ocultan elementos si JS está activo (sin JS todo se ve normal)
+  document.documentElement.classList.add('js-reveal');
+  const items = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target as HTMLElement;
+        const siblings = el.parentElement ? [...el.parentElement.children] : [];
+        el.style.setProperty('--reveal-delay', `${Math.min(siblings.indexOf(el), 6) * 60}ms`);
+        el.classList.add('is-visible');
+        io.unobserve(el);
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
+  );
+  items.forEach((el) => io.observe(el));
+</script>

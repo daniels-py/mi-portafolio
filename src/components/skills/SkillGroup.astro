@@ -1,0 +1,82 @@
+---
+/**
+ * Grupo de tarjetas con encabezado y contador.
+ * Soporta prop `size` ("md" | "sm") para controlar el tamaño de sus tarjetas y el layout en rejilla.
+ *
+ * <SkillGroup title="Bases de datos" skills={[...]} size="sm" />
+ */
+import SkillCard from './SkillCard.astro';
+import type { Skill } from '../../data/skills';
+
+interface Props {
+  title: string;
+  skills?: Skill[];
+  count?: number;
+  size?: 'md' | 'sm';
+}
+
+const { title, skills = [], count = skills.length, size = 'md' } = Astro.props;
+---
+
+<section class:list={['skill-group', `skill-group--${size}`]}>
+  <div class="head">
+    <h3>{title}</h3>
+    {count > 0 && <span class="count">{count}</span>}
+  </div>
+  <div class="grid">
+    {skills.map((skill) => <SkillCard {...skill} size={size} />)}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .skill-group + .skill-group {
+    margin-top: 40px;
+  }
+  .skill-group--sm + .skill-group--sm {
+    margin-top: 28px;
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .skill-group--sm .head {
+    margin-bottom: 12px;
+  }
+  .head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent);
+  }
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .count {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
+    gap: 16px;
+  }
+
+  /* Grid para tamaño compacto: columnas más estrechas y más densas */
+  .skill-group--sm .grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 12px;
+  }
+</style>

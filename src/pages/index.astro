@@ -1,16 +1,59 @@
 ---
+import '../styles/global.css';
+import ProjectShowcase from '../components/projects/ProjectShowcase.astro';
+import SkillsSection from '../components/skills/SkillsSection.astro';
+import { featuredProject } from '../data/projects';
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Daniel | Desarrollador de Software</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+	<body class="bg-black text-white selection:bg-blue-500 selection:text-white">
+	<div class="fixed inset-0 -z-10 h-full w-full bg-black"></div>
+
+	<!-- Header minimalista -->
+	<header class="w-full h-16 border-b border-white/10"></header>
+
+	<main>
+		<!-- Presentación Principal unificada -->
+		<section class="mx-auto w-full max-w-4xl px-5 py-20 sm:py-28 space-y-8">
+			<div class="space-y-3">
+				<p class="text-sm font-mono uppercase tracking-widest text-blue-400">
+					Desarrollador de Software
+				</p>
+				<h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+					Hola, soy Daniel.
+				</h1>
+			</div>
+
+			<div class="space-y-6 text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+				<p>por ahora lo estoy terminado :) </p>
+			</div>
+		</section>
+
+		<!-- Proyecto destacado -->
+		<section id="proyectos" class="mx-auto w-full max-w-5xl px-5 pb-12">
+			<ProjectShowcase {...featuredProject} />
+		</section>
+
+		<!-- Stack técnico / Habilidades -->
+		<SkillsSection
+			size="sm"
+			title="Habilidades y tecnologías"
+			subtitle="Lenguajes, frameworks y herramientas con los que construyo mis proyectos."
+		/>
+	</main>
+
+	<!-- Footer simple -->
+	<footer class="border-t border-white/10 py-10 text-center text-sm text-gray-400">
+		<p>© {new Date().getFullYear()} Daniel. Construido con Astro & Tailwind CSS.</p>
+	</footer>
+
+</body>
 </html>

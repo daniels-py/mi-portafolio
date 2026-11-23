@@ -1,0 +1,106 @@
+---
+/**
+ * Sección de Certificaciones con el estilo limpio y sin bordes del portafolio:
+ * tarjetas gris oscuro sobre fondo negro, tipografía monospace para metadatos
+ * y resplandor sutil del ícono asociado.
+ */
+import SkillIcon from '../skills/SkillIcon.astro';
+import { certifications, type Certification } from '../../data/certifications';
+
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  items?: Certification[];
+}
+
+const {
+  id = 'certificaciones',
+  eyebrow = 'Formación continua',
+  title = 'Certificaciones',
+  items = certifications,
+} = Astro.props;
+---
+
+<section id={id} class="mx-auto w-full max-w-5xl px-5 pb-24">
+  <div class="mb-8 space-y-2">
+    <p class="text-xs font-mono uppercase tracking-widest text-blue-400">
+      {eyebrow}
+    </p>
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+      {title}
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    {items.map((cert) => {
+      const Tag = cert.href ? 'a' : 'article';
+      const glow = cert.glow ?? '96 165 250';
+      return (
+        <Tag
+          href={cert.href}
+          target={cert.href ? '_blank' : undefined}
+          rel={cert.href ? 'noopener noreferrer' : undefined}
+          class="cert-card group relative flex items-center justify-between gap-5 overflow-hidden rounded-2xl bg-zinc-900/70 p-6 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-900/95"
+          style={`--glow:${glow}`}
+        >
+          <span class="cert-glow" aria-hidden="true"></span>
+
+          <div class="relative z-10 min-w-0 space-y-1.5">
+            <p class="text-xs font-mono text-gray-400">
+              {cert.issuer} <span class="text-gray-600">·</span> {cert.date}
+            </p>
+            <h3 class="text-lg font-semibold tracking-tight text-white leading-snug">
+              {cert.title}
+            </h3>
+            {cert.href && (
+              <span class="inline-flex items-center gap-1 pt-1 text-xs font-medium text-blue-400 group-hover:text-blue-300 transition">
+                Ver credencial ↗
+              </span>
+            )}
+          </div>
+
+          {cert.icon && (
+            <div class="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/[0.04]" aria-hidden="true">
+              <SkillIcon name={cert.icon} glow={glow} size={44} class="cert-icon-svg" />
+              {cert.issuerIcon && (
+                <span
+                  class="absolute -bottom-1.5 -right-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-zinc-950 ring-2 ring-zinc-900 shadow-lg"
+                  title={cert.issuer}
+                >
+                  <SkillIcon name={cert.issuerIcon} glow="10 233 138" size={22} class="cert-issuer-svg" />
+                </span>
+              )}
+            </div>
+          )}
+        </Tag>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .cert-glow {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 60%;
+    opacity: 0;
+    pointer-events: none;
+    background: radial-gradient(90% 130% at 92% 50%, rgb(var(--glow) / 0.22), transparent 72%);
+    transition: opacity 0.35s ease;
+  }
+  .cert-card:hover .cert-glow {
+    opacity: 1;
+  }
+  .cert-card :global(.cert-icon-svg) {
+    transform: scale(1.5);
+    transition: transform 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
+  }
+  .cert-card:hover :global(.cert-icon-svg) {
+    transform: scale(1.62);
+  }
+  .cert-card :global(.cert-issuer-svg) {
+    transform: scale(1.6);
+  }
+</style>
+

@@ -1,0 +1,28 @@
+---
+/**
+ * Sección "Sobre mí": limpia, solo título y texto.
+ */
+interface Props {
+  id?: string;
+}
+
+const { id = 'sobre-mi' } = Astro.props;
+---
+
+<section id={id} class="mx-auto w-full max-w-3xl scroll-mt-20 px-5 py-24">
+  <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-8 text-center sm:text-left">
+    Sobre mí
+  </h2>
+
+  <div class="space-y-6 text-base sm:text-lg text-gray-300 leading-relaxed font-light text-left">
+    <p>
+      ¡Hola! Soy <strong class="text-white font-medium">Daniel</strong>, desarrollador de software enfocado en crear soluciones digitales rápidas, escalables y bien estructuradas.
+    </p>
+    <p>
+      Me apasiona explorar nuevas tecnologías, optimizar el rendimiento y aplicar buenas prácticas de ingeniería de software. Disfruto construyendo aplicaciones web, APIs robustas y aprovechando herramientas modernas de desarrollo.
+    </p>
+    <p>
+      Siempre estoy aprendiendo y buscando nuevos retos donde pueda aportar valor mediante código limpio y soluciones efectivas.
+    </p>
+  </div>
+</section>

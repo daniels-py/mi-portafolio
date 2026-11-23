@@ -1,0 +1,41 @@
+---
+/**
+ * Ícono de tecnología con degradado y resplandor.
+ * Úsalo solo (ej. en el hero o en un proyecto) o dentro de <SkillCard>.
+ *
+ * <SkillIcon name="python" glow="59 130 246" size={48} />
+ */
+import { icons, type IconName } from './icons';
+
+interface Props {
+  name: IconName;
+  /** Color del resplandor "R G B" (opcional) */
+  glow?: string;
+  /** Tamaño en px (por defecto se adapta al contenedor) */
+  size?: number;
+  class?: string;
+}
+
+const { name, glow, size, class: className } = Astro.props;
+const style = [
+  glow && `filter:drop-shadow(0 0 7px rgb(${glow} / .6))`,
+  size && `width:${size}px;height:${size}px`,
+]
+  .filter(Boolean)
+  .join(';');
+---
+
+<svg
+  viewBox="0 0 110 110"
+  class:list={['skill-icon', className]}
+  style={style}
+  aria-hidden="true"
+  set:html={icons[name]}
+/>
+
+<style>
+  .skill-icon {
+    overflow: visible;
+  }
+</style>
+
