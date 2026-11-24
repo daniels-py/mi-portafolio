@@ -74,6 +74,23 @@ export const icons = {
   "macos": `<defs><linearGradient id="mac" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#94a3b8"/></linearGradient></defs><g transform="translate(55 55) scale(1.9) translate(-12 -12)">
 <path fill="url(#mac)" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
 </g>`,
+  "html-css": `<defs><linearGradient id="hc-l" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#ea580c"/></linearGradient><linearGradient id="hc-r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><g transform="translate(55 55) scale(1.9) translate(-12 -12)">
+<path fill="url(#hc-l)" d="M1.5 1H12v22l-8.5-2.4L1.5 1Z"/>
+<path fill="url(#hc-r)" d="M12 1h10.5l-2 19.6L12 23V1Z"/>
+<path fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.2 8.5 5 11.5l3.2 3M15.8 8.5 19 11.5l-3.2 3M13.2 7.5l-2.4 8"/>
+</g>`,
+  "git": `<defs><linearGradient id="git" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#f03c2e"/></linearGradient></defs><g transform="translate(55 55) scale(1.9) translate(-12 -12)">
+<path fill="url(#git)" d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/>
+</g>`,
+  "jwt": `<defs><linearGradient id="jwt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb015b"/><stop offset="0.5" stop-color="#d63aff"/><stop offset="1" stop-color="#00b9f1"/></linearGradient></defs><g transform="translate(55 55) scale(1.9) translate(-12 -12)">
+<path fill="url(#jwt)" d="M10.2 0v6.456L12 8.928l1.8-2.472V0zm3.6 6.456v3.072l2.904-.96L20.52 3.36l-2.928-2.136zm2.904 2.112l-1.8 2.496 2.928.936 6.144-1.992-1.128-3.432zM17.832 12l-2.928.936 1.8 2.496 6.144 1.992 1.128-3.432zm-1.128 3.432l-2.904-.96v3.072l3.792 5.232 2.928-2.136zM13.8 17.544L12 15.072l-1.8 2.472V24h3.6zm-3.6 0v-3.072l-2.904.96L3.48 20.64l2.928 2.136zm-2.904-2.112l1.8-2.496L6.168 12 .024 13.992l1.128 3.432zM6.168 12l2.928-.936-1.8-2.496-6.144-1.992-1.128 3.432zm1.128-3.432l2.904.96V6.456L6.408 1.224 3.48 3.36Z"/>
+</g>`,
+  "excel": `<defs><linearGradient id="xls-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#33c481"/><stop offset="1" stop-color="#107c41"/></linearGradient><linearGradient id="xls-fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#21a366"/><stop offset="1" stop-color="#185c37"/></linearGradient></defs><g transform="translate(55 55) scale(1.9) translate(-12 -12)">
+<rect x="7" y="2" width="15" height="20" rx="2" fill="url(#xls-bg)"/>
+<path fill="#ffffff" fill-opacity="0.22" d="M14 5h6v3h-6zm0 5h6v3h-6zm0 5h6v3h-6z"/>
+<rect x="2" y="6" width="11" height="12" rx="2" fill="url(#xls-fg)"/>
+<path fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" d="M5.4 9.3 9.6 14.7M9.6 9.3 5.4 14.7"/>
+</g>`,
 } as const;
 
 export type IconName = keyof typeof icons;

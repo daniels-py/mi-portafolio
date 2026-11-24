@@ -20,6 +20,8 @@ export interface Project {
   /** Etiqueta sobre los íconos de herramientas (por defecto "tools used:") */
   toolsLabel?: string;
   stack: IconName[];
+  /** Etiquetas extra de tecnologías sin ícono dedicado (ej. DRF, Simple JWT) */
+  extraTags?: string[];
   /** Contenedores multimedia para el carrusel (imagen o video) */
   media: ProjectMedia[];
   href?: string;
@@ -29,8 +31,13 @@ const skillMap = new Map(
   skillCategories.flatMap((c) => c.skills).map((s) => [s.icon, s]),
 );
 
+const extraTechMeta: Partial<Record<IconName, { name: string; glow: string }>> = {
+  jwt: { name: 'Simple JWT', glow: '214 58 255' },
+  excel: { name: 'Excel', glow: '33 196 129' },
+};
+
 export function resolveTechMeta(icon: IconName) {
-  const found = skillMap.get(icon);
+  const found = skillMap.get(icon) ?? extraTechMeta[icon];
   return {
     icon,
     name: found?.name ?? icon,
@@ -39,18 +46,20 @@ export function resolveTechMeta(icon: IconName) {
 }
 
 export const featuredProject: Project = {
-  name: 'Project de daniel',
-  tag: 'Proyecto destacado',
-  progress: 60,
+  name: 'Sistema de Gestión de Inventario y Préstamos (ICED)',
+  tag: 'Aplicación web · API REST',
+  progress: 100,
+  progressLabel: 'Completado',
   description:
-    'Breve descripción de la aplicación, el problema que resuelve y cómo funciona para los usuarios.',
-  toolsLabel: 'tools used:',
-  stack: ['python', 'django', 'postgresql', 'docker'],
+    'Aplicación web y API REST desarrollada con Django y PostgreSQL para administrar el inventario de equipos tecnológicos, el control de préstamos a usuarios (aprendices e instructores), el registro de sanciones y el historial de movimientos. Incluye autenticación segura con JWT para integración con aplicaciones móviles (Flutter) y carga masiva mediante archivos Excel.',
+  toolsLabel: 'Tecnologías utilizadas:',
+  stack: ['python', 'django', 'postgresql', 'flutter', 'javascript', 'html-css', 'postman', 'git', 'chatgpt', 'jwt', 'excel'],
   media: [
     {
       type: 'image',
-      alt: 'Vista previa de Elvio Project',
-      label: 'Elvio Project — Vista previa',
+      src: '/projects/iced-preview.png',
+      alt: 'Vista previa del sistema ICED - SENA',
+      label: 'ICED - SENA · Vista previa',
     },
   ],
 };

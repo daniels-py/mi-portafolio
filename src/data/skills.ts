@@ -24,6 +24,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Python", tag: "Lenguaje", description: "Programa desde cero", glow: "59 130 246", icon: "python" },
       { name: "Java", tag: "Lenguaje", description: "POO y aplicaciones robustas", glow: "239 68 68", icon: "java" },
       { name: "JavaScript", tag: "Lenguaje", description: "La web interactiva", glow: "250 204 21", icon: "javascript" },
+      { name: "HTML & CSS", tag: "Web", description: "Estructura y diseño web", glow: "249 115 22", icon: "html-css" },
       { name: "Kotlin", tag: "Lenguaje", description: "Apps Android modernas", glow: "160 90 255", icon: "kotlin" },
       { name: "Django", tag: "Framework", description: "Apps web con Python", glow: "52 190 140", icon: "django" },
       { name: "Flutter", tag: "Framework", description: "Apps para iOS y Android", glow: "56 189 248", icon: "flutter" },
@@ -40,6 +41,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Control de versiones y DevOps",
     skills: [
+      { name: "Git", tag: "Control de versiones", description: "Historial y ramas", glow: "240 60 46", icon: "git" },
       { name: "GitHub", tag: "DevOps", description: "Control de versiones en equipo", glow: "168 85 247", icon: "github" },
       { name: "GitLab", tag: "DevOps", description: "Repositorios y CI/CD", glow: "252 109 38", icon: "gitlab" },
       { name: "Docker", tag: "DevOps", description: "Contenedores y despliegue", glow: "36 150 237", icon: "docker" },
