@@ -71,7 +71,7 @@ export const projects: Project[] = [
   {
     name: 'Aris',
     tag: 'App Android · En desarrollo',
-    progress: 45,
+    progress: 75,
     progressLabel: 'En desarrollo',
     description:
       'App Android que escucha las notificaciones bancarias para anunciar en voz alta pagos recibidos por Nequi y Bre-B y guardar su historial local, evitando revisar el celular en cada venta. Incorpora protección anti-estafas: valida únicamente apps oficiales, bloquea solicitudes, pendientes o egresos, evita duplicados y distingue pagos por llave Bre-B.',
