@@ -12,9 +12,15 @@ export interface ProjectMedia {
 export interface Project {
   name: string;
   tag?: string;
+  /** Porcentaje de avance del proyecto (0 a 100) */
+  progress?: number;
+  /** Etiqueta de estado sobre la barra de progreso (por defecto "En desarrollo") */
+  progressLabel?: string;
   description: string;
+  /** Etiqueta sobre los íconos de herramientas (por defecto "tools used:") */
+  toolsLabel?: string;
   stack: IconName[];
-  /** Contenedores multimedia (imagen o video) */
+  /** Contenedores multimedia para el carrusel (imagen o video) */
   media: ProjectMedia[];
   href?: string;
 }
@@ -33,16 +39,18 @@ export function resolveTechMeta(icon: IconName) {
 }
 
 export const featuredProject: Project = {
-  name: 'Nombre de tu App',
+  name: 'Project de daniel',
   tag: 'Proyecto destacado',
+  progress: 60,
   description:
     'Breve descripción de la aplicación, el problema que resuelve y cómo funciona para los usuarios.',
+  toolsLabel: 'tools used:',
   stack: ['python', 'django', 'postgresql', 'docker'],
   media: [
     {
       type: 'image',
-      alt: 'Vista previa de la aplicación',
-      label: 'Vista previa',
+      alt: 'Vista previa de Elvio Project',
+      label: 'Elvio Project — Vista previa',
     },
   ],
 };
