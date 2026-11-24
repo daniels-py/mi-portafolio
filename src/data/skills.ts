@@ -36,6 +36,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "PostgreSQL", tag: "SQL", description: "Bases de datos relacionales", glow: "90 150 215", icon: "postgresql" },
       { name: "MySQL", tag: "SQL", description: "Consultas y bases de datos", glow: "20 165 195", icon: "mysql" },
       { name: "MongoDB", tag: "NoSQL", description: "Bases de datos de documentos", glow: "34 197 94", icon: "mongodb" },
+      { name: "SQLite", tag: "SQL", description: "Base de datos local y móvil", glow: "14 165 233", icon: "sqlite" },
     ],
   },
   {

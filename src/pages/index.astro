@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import ProjectShowcase from '../components/projects/ProjectShowcase.astro';
 import SkillsSection from '../components/skills/SkillsSection.astro';
-import { featuredProject } from '../data/projects';
+import { projects } from '../data/projects';
 ---
 
 <html lang="es">
@@ -43,9 +43,9 @@ import { featuredProject } from '../data/projects';
 			</div>
 		</section>
 
-		<!-- Proyecto destacado -->
-		<section id="proyectos" class="mx-auto w-full max-w-7xl px-5 pb-12">
-			<ProjectShowcase {...featuredProject} />
+		<!-- Proyectos -->
+		<section id="proyectos" class="mx-auto w-full max-w-6xl space-y-8 px-5 pb-12">
+			{projects.map((project) => <ProjectShowcase {...project} />)}
 		</section>
 
 		<!-- Stack técnico / Habilidades (mosaico solo íconos unificado) -->

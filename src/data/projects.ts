@@ -22,6 +22,8 @@ export interface Project {
   stack: IconName[];
   /** Etiquetas extra de tecnologías sin ícono dedicado (ej. DRF, Simple JWT) */
   extraTags?: string[];
+  /** Marco de la vista previa: "macos" (escritorio) o "phone" (móvil) */
+  frame?: 'macos' | 'phone';
   /** Contenedores multimedia para el carrusel (imagen o video) */
   media: ProjectMedia[];
   href?: string;
@@ -62,5 +64,29 @@ export const featuredProject: Project = {
       label: 'ICED - SENA · Vista previa',
     },
   ],
+  href: 'https://github.com/nicolasgarzonpinzon/ICED_DJANGO_PYTHON',
 };
+
+export const projects: Project[] = [
+  {
+    name: 'Aris',
+    tag: 'App Android · En desarrollo',
+    progress: 45,
+    progressLabel: 'En desarrollo',
+    description:
+      'App Android que escucha las notificaciones bancarias para anunciar en voz alta pagos recibidos por Nequi y Bre-B y guardar su historial local, evitando revisar el celular en cada venta. Incorpora protección anti-estafas: valida únicamente apps oficiales, bloquea solicitudes, pendientes o egresos, evita duplicados y distingue pagos por llave Bre-B.',
+    toolsLabel: 'Tecnologías utilizadas:',
+    stack: ['kotlin', 'android-studio', 'sqlite', 'git', 'linux', 'claude', 'gemini'],
+    frame: 'phone',
+    media: [
+      {
+        type: 'image',
+        src: '/projects/aris-preview.jpg',
+        alt: 'Vista previa de la app Aris en Android',
+        label: 'Aris · Vista previa móvil',
+      },
+    ],
+  },
+  featuredProject,
+];
 
